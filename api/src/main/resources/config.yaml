@@ -1,0 +1,16 @@
+kumuluzee:
+  name: orders-catalog
+  version: 1.0.0
+  env:
+    name: dev
+  server:
+    base-url: http://localhost:8081
+    http:
+      port: 8081
+  datasources:
+    - jndi-name: jdbc/OrderCatalogDS
+      connection-url: jdbc:postgresql://localhost:5433/ordercatalog
+      username: postgres
+      password: postgres
+      pool:
+        max-size: 3
