@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-catalog-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-catalog
+  template:
+    metadata:
+      labels:
+        app: orders-catalog
+    spec:
+      containers:
+        - image:
+          name: orders-catalog
+          env:
+            - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+              value: jdbc:postgresql://mouse.db.elephantsql.com:5432/frloxrxw
+            - name: KUMULUZEE_DATASOURCES0_USERNAME
+              value: frloxrxw
+            - name: KUMULUZEE_DATASOURCES0_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-pass2
+                  key: KUMULUZEE_DATASOURCES0_PASSWORD
+          ports:
+            - containerPort: 8081
+              name: server
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-catalog
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: orders-catalog
