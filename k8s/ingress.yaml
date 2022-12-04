@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: custom-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /v1/orders/$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /v1/restaurants(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: restaurant-catalog
+                port:
+                  number: 8080
+          - path: /v1/orders(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orders-catalog
+                port:
+                  number: 8081
+          - path: /hello-world-one(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: aks-helloworld-one
+                port:
+                  number: 80
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: aks-helloworld-one
+                port:
+                  number: 80
