@@ -14,3 +14,34 @@ kumuluzee:
       password: postgres
       pool:
         max-size: 3
+  health:
+    servlet:
+      mapping: /health/live
+      enabled: true
+    checks:
+      data-source-health-check:
+        type: liveness
+        jndi-name: jdbc/OrderCatalogDS
+  metrics:
+    web-instrumentation:
+      - name: metrics-endpoint
+        url-pattern: /orders/*
+        status-codes: "200,201,204,400,404,500"
+  logs:
+    config-file: '<?xml version="1.0" encoding="UTF-8"?>
+                    <Configuration name="orders">
+                        <Appenders>
+                            <Console name="console" target="SYSTEM_OUT">
+                                <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                            </Console>
+                        </Appenders>
+                        <Loggers>                 
+                            <!-- Default logger -->
+                            <Root level="all">
+                                <AppenderRef ref="console" level="info" />
+                            </Root>
+                        </Loggers>
+                    </Configuration>'
+rest-properties:
+  maintenance-mode: false
+  broken: false

@@ -1,17 +1,22 @@
 package si.rso.skupina10.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name = "orderentity")
+@Entity(name = "order")
+@NamedQueries(value = {
+        @NamedQuery(name = "Order.getAll", query = "SELECT o FROM order o"),
+        @NamedQuery(name = "Order.getOrderById", query = "SELECT o FROM order o WHERE o.orderId = :orderId")
+})
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    private String name;
+    private Integer status; // 0 if ready for delivery, 1 if being delivered
+
+    private Integer restaurantId;
+
+    private Integer personId;
 
     public Integer getOrderId() {
         return orderId;
@@ -21,11 +26,15 @@ public class OrderEntity {
         this.orderId = orderId;
     }
 
-    public String getName() {
-        return name;
-    }
+    public Integer getOrderRestaurantId(){ return restaurantId; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setOrderRestaurantId(Integer restaurantId) {this.restaurantId = restaurantId; }
+
+    public Integer getOrderPersonId() {return personId; }
+
+    public void setOrderPersonId(Integer personId) {this.personId = personId;}
+
+    public Integer getOrderStatus() {return status; }
+
+    public void setOrderStatus(Integer status) {this.status = status; }
 }
