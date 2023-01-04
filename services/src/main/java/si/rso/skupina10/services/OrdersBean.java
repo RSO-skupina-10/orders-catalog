@@ -32,7 +32,7 @@ public class OrdersBean {
     private void init(){ log.info("Initialization of the " + OrdersBean.class.getSimpleName()); }
 
     @PreDestroy
-    private void destron(){ log.info( "Destroy "+ OrdersBean.class.getSimpleName()); }
+    private void destroy(){ log.info( "Destroy "+ OrdersBean.class.getSimpleName()); }
 
     public List<OrderDto> getOrders() {
         try{
