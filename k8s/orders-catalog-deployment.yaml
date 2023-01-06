@@ -29,6 +29,18 @@ spec:
             - containerPort: 8081
               name: server
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 120
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
+            initialDelaySeconds: 120
+            periodSeconds: 3
 
 ---
 
@@ -37,7 +49,7 @@ kind: Service
 metadata:
   name: orders-catalog
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8081
       protocol: TCP

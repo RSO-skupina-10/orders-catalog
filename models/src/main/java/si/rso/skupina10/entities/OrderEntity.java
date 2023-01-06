@@ -2,10 +2,10 @@ package si.rso.skupina10.entities;
 
 import javax.persistence.*;
 
-@Entity(name = "order")
+@Entity(name = "orderentity")
 @NamedQueries(value = {
-        @NamedQuery(name = "Order.getAll", query = "SELECT o FROM order o"),
-        @NamedQuery(name = "Order.getOrderById", query = "SELECT o FROM order o WHERE o.orderId = :orderId")
+        @NamedQuery(name = "Order.getAll", query = "SELECT o FROM orderentity o"),
+        @NamedQuery(name = "Order.getOrderById", query = "SELECT o FROM orderentity o WHERE o.orderId = :orderId")
 })
 public class OrderEntity {
     @Id
