@@ -12,7 +12,7 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    private Integer status; // 0 if ready for delivery, 1 if being delivered
+    private Integer status; // 0 if ready for delivery, 1 if being delivered, 2 if already delivered
 
     private Integer restaurantId;
 

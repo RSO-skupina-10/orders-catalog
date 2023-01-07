@@ -82,8 +82,10 @@ public class OrdersBean {
                 return null;
             } else {
                 OrderEntity entity = OrderConverter.toEntity(o);
+                beginTx();
                 em.persist(entity);
                 em.flush();
+                commitTx();
                 log.info("Order " + o.getId() + " was added");
                 return OrderConverter.toDto(entity);
             }
@@ -98,11 +100,34 @@ public class OrdersBean {
         OrderEntity order = em.find(OrderEntity.class, orderId);
 
         if (order != null) {
-            em.remove(order);
-            em.flush();
+            try{
+                beginTx();
+                em.remove(order);
+                em.flush();
+            } catch (Exception e){
+                rollbackTx();
+            }
             return true;
         }
         return false;
+    }
+
+    private void beginTx() {
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
+    }
+
+    private void commitTx() {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().commit();
+        }
+    }
+
+    private void rollbackTx() {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
     }
 
 }
