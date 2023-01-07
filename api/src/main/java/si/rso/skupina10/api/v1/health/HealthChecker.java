@@ -6,7 +6,9 @@ import si.rso.skupina10.services.config.RestProperties;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.eclipse.microprofile.health.Liveness;
 
+@Liveness
 @ApplicationScoped
 public class HealthChecker implements HealthCheck {
     @Inject

@@ -13,7 +13,8 @@ spec:
         app: orders-catalog
     spec:
       containers:
-        - image: klemen1999/orders-catalog:2022-12-03-21-21-24
+        - image: klemen1999/orders-catalog:2023-01-06-12-44-09
+#        - image: klemen1999/orders-catalog:2022-12-03-21-21-24
           name: orders-catalog
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
@@ -33,13 +34,13 @@ spec:
             httpGet:
               path: /health/live
               port: server
-            initialDelaySeconds: 120
+            initialDelaySeconds: 300
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /health/ready
               port: server
-            initialDelaySeconds: 120
+            initialDelaySeconds: 300
             periodSeconds: 3
 
 ---
