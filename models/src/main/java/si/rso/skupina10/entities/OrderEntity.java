@@ -26,15 +26,15 @@ public class OrderEntity {
         this.orderId = orderId;
     }
 
-    public Integer getOrderRestaurantId(){ return restaurantId; }
+    public Integer getRestaurantId(){ return restaurantId; }
 
-    public void setOrderRestaurantId(Integer restaurantId) {this.restaurantId = restaurantId; }
+    public void setRestaurantId(Integer restaurantId) {this.restaurantId = restaurantId; }
 
-    public Integer getOrderPersonId() {return personId; }
+    public Integer getPersonId() {return personId; }
 
-    public void setOrderPersonId(Integer personId) {this.personId = personId;}
+    public void setPersonId(Integer personId) {this.personId = personId;}
 
-    public Integer getOrderStatus() {return status; }
+    public Integer getStatus() {return status; }
 
-    public void setOrderStatus(Integer status) {this.status = status; }
+    public void setStatus(Integer status) {this.status = status; }
 }

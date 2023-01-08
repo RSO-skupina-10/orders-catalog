@@ -67,9 +67,9 @@ public class OrdersBean {
     @Transactional
     public OrderDto addOrder(OrderDto o) {
         try {
-            Integer status = o.getOrderStatus();
-            Integer restaurantId = o.getOrderRestaurantId();
-            Integer personId = o.getOrderPersonId();
+            Integer status = o.getStatus();
+            Integer restaurantId = o.getRestaurantId();
+            Integer personId = o.getPersonId();
 
             if (status == null) {
                 log.info("Cannot add order without status");

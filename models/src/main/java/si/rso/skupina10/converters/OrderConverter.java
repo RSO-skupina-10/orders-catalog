@@ -8,9 +8,9 @@ public class OrderConverter {
     public static OrderDto toDto(OrderEntity entity) {
         OrderDto dto = new OrderDto();
         dto.setId(entity.getOrderId());
-        dto.setOrderRestaurantId(entity.getOrderRestaurantId());
-        dto.setOrderPersonId(entity.getOrderPersonId());
-        dto.setOrderStatus(entity.getOrderStatus());
+        dto.setRestaurantId(entity.getRestaurantId());
+        dto.setPersonId(entity.getPersonId());
+        dto.setStatus(entity.getStatus());
         return dto;
     }
 
@@ -18,9 +18,9 @@ public class OrderConverter {
         OrderEntity entity = new OrderEntity();
 
         entity.setOrderId(dto.getId());
-        entity.setOrderRestaurantId(dto.getOrderRestaurantId());
-        entity.setOrderPersonId(dto.getOrderPersonId());
-        entity.setOrderStatus(dto.getOrderStatus());
+        entity.setRestaurantId(dto.getRestaurantId());
+        entity.setPersonId(dto.getPersonId());
+        entity.setStatus(dto.getStatus());
         return entity;
     }
 }
