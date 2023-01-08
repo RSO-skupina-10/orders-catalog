@@ -13,8 +13,7 @@ spec:
         app: orders-catalog
     spec:
       containers:
-        - image: klemen1999/orders-catalog:2023-01-08-00-55-43
-#        - image: klemen1999/orders-catalog:2022-12-03-21-21-24
+        - image: klemen1999/orders-catalog:2023-01-08-17-30-39
           name: orders-catalog
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
