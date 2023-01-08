@@ -25,6 +25,20 @@ spec:
                 name: restaurant-catalog
                 port:
                   number: 8080
+          - path: /auth-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 8084
+          - path: /weather-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: weather-service
+                port:
+                  number: 8082
           - path: /(.*)
             pathType: Prefix
             backend:

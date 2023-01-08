@@ -13,7 +13,7 @@ spec:
         app: orders-catalog
     spec:
       containers:
-        - image: klemen1999/orders-catalog:2023-01-07-16-42-45
+        - image: klemen1999/orders-catalog:2023-01-08-00-55-43
 #        - image: klemen1999/orders-catalog:2022-12-03-21-21-24
           name: orders-catalog
           env:
