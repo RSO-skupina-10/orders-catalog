@@ -16,9 +16,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.UriInfo;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Timeout;
+
 
 @ApplicationScoped
 public class OrdersBean {
@@ -65,6 +69,8 @@ public class OrdersBean {
     }
 
     @Transactional
+    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
+    @CircuitBreaker(requestVolumeThreshold = 3)
     public OrderDto addOrder(OrderDto o) {
         try {
             Integer status = o.getStatus();
