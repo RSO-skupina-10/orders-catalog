@@ -29,4 +29,17 @@ public class DemoResource {
         return Response.status(Response.Status.OK).build();
     }
 
+    @GET
+    @Path("maintenance-on")
+    public Response maintenanceOn(){
+        restProperties.setMaintenanceMode(true);
+        return Response.status(Response.Status.OK).build();
+    }
+
+    @GET
+    @Path("maintenance-off")
+    public Response maintenanceOff(){
+        restProperties.setMaintenanceMode(false);
+        return Response.status(Response.Status.OK).build();
+    }
 }
